@@ -9,6 +9,7 @@ import {
   Link, 
   Stack,
   Text,
+  Tooltip,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -62,15 +63,19 @@ export default function Home() {
   ) 
   const shadowHover = useColorModeValue(
     'rgb(245, 245, 245) 10px -10px 0px -4px, rgb(0, 0, 0) 10px -10px , rgb(245, 245, 245) 20px -20px 0px -4px, rgb(0, 0, 0) 20px -20px',
-  'rgb(32, 33, 36) 10px -10px 0px -4px, rgb(245, 245, 245) 10px -10px, rgb(32, 33, 36) 20px -20px 0px -4px, rgb(245, 245, 245) 20px -20px')
+    'rgb(32, 33, 36) 10px -10px 0px -4px, rgb(245, 245, 245) 10px -10px, rgb(32, 33, 36) 20px -20px 0px -4px, rgb(245, 245, 245) 20px -20px'
+  )
   const shortShadow = useColorModeValue(
     'rgb(245, 245, 245) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px',
-    'rgb(32, 33, 36) 10px -10px 0px -3px, rgb(245, 245, 245) 10px -10px') 
+    'rgb(32, 33, 36) 10px -10px 0px -3px, rgb(245, 245, 245) 10px -10px'
+  ) 
   const veryShortShadow = useColorModeValue(
     'rgb(245, 245, 245) 10px -10px 0px -2px, rgb(0, 0, 0) 10px -10px, rgb(245, 245, 245) 20px -20px 0px -2px',
-  'rgb(32, 33, 36) 10px -10px 0px -2px, rgb(245, 245, 245) 10px -10px, rgb(32, 33, 36) 20px -20px 0px -2px') 
+    'rgb(32, 33, 36) 10px -10px 0px -2px, rgb(245, 245, 245) 10px -10px, rgb(32, 33, 36) 20px -20px 0px -2px'
+  ) 
 
   return (
+    
     <Container 
       bg={bg} 
       fontFamily="'IBM Plex Mono', monospace" 
@@ -96,7 +101,6 @@ export default function Home() {
       >
         <Text
           _hover={{background: "whitesmoke", color: "#121212"}}
-          cursor='pointer'
           padding={1.5}
           transition='.2s ease-in-out'
         >
@@ -106,7 +110,9 @@ export default function Home() {
         <Stack alignItems='center' as='nav' direction='row' justifyContent='center'  spacing={10}>
           <Link 
             _hover={{bg: "whitesmoke", color: "#121212"}}
-            as='a' 
+            as='a'
+            bg='transparent' 
+            cursor='pointer'
             padding={1}
             transition='.3s ease-in-out'
             onClick={scrollToTop}
@@ -169,7 +175,6 @@ export default function Home() {
 
       </Stack>
 
-      {/* Sobre mi */}
       <Stack alignItems='center' bg={bg} color={color} height='100vh' justifyContent='center' paddingX={5} spacing={20} transition='.3s ease-in-out'>
 
 
@@ -183,10 +188,10 @@ export default function Home() {
             margin={['0 auto', '0 auto', '0 auto', '0' ]} 
             maxWidth='fit-content'
             padding={5} 
-            transition='.3s ease-in-out'
+            transition='.2s ease-in-out'
             >ABOUT ME </Heading>
           <Text fontSize='md' maxWidth='50ch' textAlign={['center', 'center', 'center', 'left']}>
-            Soy de Buenos Aires, Argentina. Hace un tiempo, descubrí que me apasiona programar y desarrollar aplicaciones. Desde ese entonces, intento mejorar un poco cada día y volverme mejor que el anterior.
+            {`I'm from Buenos Aires, Argentina. Some time ago, I discovered my love for programming and developing web applications. Since then, I try everyday to get a little bit better as a developer than the day before. `}
           </Text> 
         </Stack>
 
@@ -200,56 +205,74 @@ export default function Home() {
               <Icon 
                 _hover={{opacity:'.5'}}
                 as={FaJs}
+                cursor='pointer'
                 h={10}
                 w={10}
+                onClick={()=> window.open("https://developer.mozilla.org/en-US/docs/Web/JavaScript", "_blank")}
               />
+
               <Icon 
                 _hover={{opacity:'.5'}}
                 as={FaReact}
+                cursor='pointer'
                 h={10}
                 w={10}
+                onClick={()=> window.open("https://reactjs.org/", "_blank")}
               />
 
               <Icon 
                 _hover={{opacity:'.5'}}
                 as={SiChakraui}
+                cursor='pointer'
                 h={10}
                 w={10}
+                onClick={()=> window.open("https://chakra-ui.com/", "_blank")}
               />
+
             </Stack>
-            <Stack direction='row' spacing={5}>
-              <Icon 
-                _hover={{opacity:'.5'}}
-                as={FaHtml5}
-                h={10}
-                w={10}
-              />
-              <Icon 
-                _hover={{opacity:'.5'}}
-                as={FaCss3Alt}
-                h={10}
-                w={10}
-              />
+              <Stack direction='row' spacing={5}>
                 <Icon 
-                _hover={{opacity:'.5'}}
-                  as={FaSass}
+                  _hover={{opacity:'.5'}}
+                  as={FaHtml5}
+                  cursor='pointer'
                   h={10}
                   w={10}
+                  onClick={()=> window.open("https://developer.mozilla.org/en-US/docs/Web/HTML", "_blank")}
                 />
-              <Icon 
-                _hover={{opacity:'.5'}}
-                as={FaGitAlt}
-                h={10}
-                w={10}
-              />
+
+                <Icon 
+                  _hover={{opacity:'.5'}}
+                  as={FaCss3Alt}
+                  cursor='pointer'
+                  h={10}
+                  w={10}
+                  onClick={()=> window.open("https://developer.mozilla.org/es/docs/Web/CSS", "_blank")}
+                />
+
+                <Icon 
+                  _hover={{opacity:'.5'}}
+                  as={FaSass}
+                  cursor='pointer'
+                  h={10}
+                  w={10}
+                  onClick={()=> window.open("https://sass-lang.com/", "_blank")}
+                />
+
+                <Icon 
+                  _hover={{opacity:'.5'}}
+                  as={FaGitAlt}
+                  cursor='pointer'
+                  h={10}
+                  w={10}
+                  onClick={()=> window.open("https://git-scm.com/", "_blank")}
+                />
+
+              </Stack>
 
             </Stack>
-
           </Stack>
+
         </Stack>
-
-
-      </Stack>
 
       </Stack>
 
@@ -260,8 +283,10 @@ export default function Home() {
         color={color} 
         justifyContent='center' 
         minHeight='100vh' 
+        paddingBottom='8rem' 
+        paddingTop='5rem' 
         paddingX={5} 
-        paddingY={10} 
+        // paddingY={10}
         spacing={24}
         transition='.3s ease-in-out'
       >
@@ -277,66 +302,106 @@ export default function Home() {
             transition='.3s ease-in-out'>
               PROJECTS
           </Heading>
-          <Button _hover={{bg:`${bgHover}`, color: `${colorHover}`}} bg={bg} border={borderVerySlim} borderRadius='0' fontWeight={400} transition='.3s background ease-in-out'>See more</Button>
+          <Button 
+            _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
+            bg={bg} 
+            border={borderVerySlim} 
+            borderRadius='0' 
+            fontWeight={400} 
+            transition='.3s background ease-in-out'
+            onClick={()=> window.open("https://github.com/emiacerbi", "_blank")}
+          >
+
+              See more
+          </Button>
         </Stack>
 
         <Stack direction={['column', 'column', 'column', 'row']} spacing={[10, 10, 10, 20]}>
           <Stack spacing={5}>
-              <Box 
-                _hover={{ bg: `${bg}`, boxShadow: `${shortShadow}` }} 
+            <Box 
+            _hover={{ 
+              bg: `${bgHover}`,
+              boxShadow: `${shortShadow}` ,
+              color: `${colorHover}`
+            }} 
+              bg={bg} 
+              border={borderSlim} 
+              cursor='pointer' display='flex'
+              height='150px'
+              position='relative'
+              transition='.3s ease-in-out'
+              width='250px'
+              onClick={()=> window.open("https://emiacerbi.github.io/blogr-landing-page/", "_blank")}
+            >
+
+              <Text alignSelf='center' fontSize='2xl' textAlign='center'>Blogr landing page</Text>
+            </Box>
+            <Button 
+              _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
+              bg={bg} 
+              border={borderVerySlim} 
+              borderRadius='0' 
+              fontWeight={400} 
+              transition='.3s background ease-in-out' 
+              onClick={()=> window.open("https://github.com/emiacerbi/blogr-landing-page")}>
+                Repositorio
+            </Button>
+          </Stack>
+
+          <Stack spacing={5}>
+          <Box 
+              _hover={{ 
+                bg: `${bgHover}`,
+                boxShadow: `${shortShadow}` ,
+                color: `${colorHover}`
+              }} 
                 bg={bg} 
                 border={borderSlim} 
-                cursor='pointer' height='350px'
+                cursor='pointer' display='flex'
+                height='150px'
+                position='relative'
                 transition='.3s ease-in-out'
                 width='250px'
+                onClick={()=> window.open("https://emiacerbi.github.io/crowdfunding-product-page/")}
+                >
+
+                <Text alignSelf='center' fontSize='2xl' textAlign='center'>Crowdfunding product page</Text>
+                
+            </Box>
+            <Button _hover={{bg:`${bgHover}`, color: `${colorHover}`}} bg={bg} border={borderVerySlim} borderRadius='0' fontWeight={400} transition='.3s background ease-in-out' onClick={()=> window.open("https://github.com/emiacerbi/crowdfunding-product-page")}>Repositorio</Button>
+          </Stack>
+
+          <Stack spacing={5}>
+          <Box 
+              _hover={{ 
+                bg: `${bgHover}`,
+                boxShadow: `${shortShadow}` ,
+                color: `${colorHover}`
+              }} 
+                bg={bg} 
+                border={borderSlim} 
+                cursor='pointer' display='flex'
+                height='150px'
+                position='relative'
+                transition='.3s ease-in-out'
+                width='250px'
+                onClick={()=> window.open("https://emiacerbi.github.io/social-media-dashboard/")}
               >
-                <Image 
-                  // _hover={{src: "screenshotMobile2.png"}}
-                  alt="mountain"
-                  height='100%'
-                  objectFit='cover'
-                  src="screenshotMobile2.png"
-                />
-              </Box>
-              <Button _hover={{bg:`${bgHover}`, color: `${colorHover}`}} bg={bg} border={borderVerySlim} borderRadius='0' fontWeight={400} transition='.3s background ease-in-out'>Repositorio</Button>
-          </Stack>
+              
+              <Text alignSelf='center' fontSize='2xl' margin='0 auto' textAlign='center' width='10ch'>Social Media Dashboard</Text>
 
-          <Stack spacing={5}>
-            <Box 
-              _hover={{ bg: `${bg}`, boxShadow: `${shortShadow}` }} 
-              bg={bg} 
-              border={borderSlim} 
-              cursor='pointer' height='350px'
-              transition='.3s ease-in-out'
-              width='250px'
-            >
-              <Image 
-                alt="mountain"
-                height='100%'
-                objectFit='contain'
-                src="screenshotMobile.png"
-              />
             </Box>
-            <Button _hover={{bg:`${bgHover}`, color: `${colorHover}`}} bg={bg} border={borderVerySlim} borderRadius='0' fontWeight={400} transition='.3s background ease-in-out'>Repositorio</Button>
-          </Stack>
-
-          <Stack spacing={5}>
-            <Box 
-              _hover={{ bg: `${bg}`, boxShadow: `${shortShadow}` }} 
+            <Button 
+              _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
               bg={bg} 
-              border={borderSlim} 
-              cursor='pointer' height='350px'
-              transition='.3s ease-in-out'
-              width='250px'
+              border={borderVerySlim} 
+              borderRadius='0' 
+              fontWeight={400} 
+              transition='.3s background ease-in-out'
+              onClick={()=> window.open("https://github.com/emiacerbi/social-media-dashboard")}
             >
-              <Image 
-                alt="mountain"
-                height='100%'
-                objectFit='cover'
-                src="screenshotMobile3.png"
-              />
-            </Box>
-            <Button _hover={{bg:`${bgHover}`, color: `${colorHover}`}} bg={bg} border={borderVerySlim} borderRadius='0' fontWeight={400} transition='.3s background ease-in-out'>Repositorio</Button>
+              Repositorio
+            </Button>
           </Stack>
 
         </Stack>
@@ -352,22 +417,30 @@ export default function Home() {
           h={9}
           transition='.1s ease-in-out'
           w={9}
-        />
+          onClick={()=> window.open("https://github.com/emiacerbi", "_blank")}
+          />
+
         <Icon 
           _hover={{opacity: '.5'}}
           as={FaLinkedin}
           cursor='pointer'   
           h={9}
           w={9}       
+          onClick={()=> window.open("https://www.linkedin.com/in/emiliano-acerbi-7a7141235/", "_blank")}
         />
+        <Stack alignItems='center' direction='row' spacing={3}>
+        {/* 
+          <Icon 
+            _hover={{opacity: '.5'}}
+            as={FaEnvelope}
+            cursor='pointer'
+            h={9}   
+            justifySelf='flex-end'
+            w={9}       
+          /> 
+        */}
+        </Stack>
 
-        <Icon 
-          _hover={{opacity: '.5'}}
-          as={FaEnvelope}
-          cursor='pointer'   
-          h={9}
-          w={9}       
-        />
       </Stack>
 
     </Container>

@@ -7,15 +7,11 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-      <Head>
-        {/* <link href="https://fonts.googleapis.com" rel="preconnect" />
-        <link crossOrigin href="https://fonts.gstatic.com" rel="preconnect" />
-        <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet"></link> */}
-
-        <link href="https://fonts.googleapis.com" rel="preconnect" />
-<link crossOrigin href="https://fonts.gstatic.com" rel="preconnect" />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-      </Head>
+        <Head>
+          <link href="https://fonts.googleapis.com" rel="preconnect" />
+          <link crossOrigin href="https://fonts.gstatic.com" rel="preconnect" />
+          <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+        </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
