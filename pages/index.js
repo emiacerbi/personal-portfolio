@@ -17,7 +17,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import { Head } from "next/head";
+import Head from "next/head";
 
 import { FaCss3Alt, FaEnvelope, FaGitAlt, FaGithub, FaHtml5, FaJs, FaLinkedin, FaReact, FaSass} from "react-icons/fa";
 import { BsSunFill } from "react-icons/bs";
@@ -28,14 +28,12 @@ import { useState } from "react";
 
 export default function Home() {
 
-  
   const [isMobileMenuShown, setIsMobileMenuShown] = useState(false)
   const mobileMenu = isMobileMenuShown ? 'translateX(-50%) scale(1)' : 'translateX(-50%) scale(0)'
 
   // For Gmail
   const toast = useToast()
   
-
   // Scroll functions
   const scrollToTop = () =>{
     window.scrollTo({
@@ -57,7 +55,6 @@ export default function Home() {
       top: 1922
     });
   };
-
 
   // Dark / Light Mode variables
 
@@ -288,9 +285,9 @@ export default function Home() {
 
         </Stack>
 
+
+
         <Stack alignItems='center' bg={bg} color={color} height='75vh' justifyContent='center' paddingX={5} spacing={20} transition='.3s ease-in-out'>
-
-
         <Stack alignItems='center' direction={['column', 'column', 'column', 'row']} spacing={40} >
           <Stack spacing={10}>
             <Heading 
