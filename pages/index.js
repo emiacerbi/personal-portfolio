@@ -24,7 +24,7 @@ import { BsSunFill } from "react-icons/bs";
 import { SiChakraui } from "react-icons/si";
 
 import { HamburgerIcon, MoonIcon } from '@chakra-ui/icons'
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Home() {
 
@@ -35,6 +35,11 @@ export default function Home() {
   const toast = useToast()
   
   // Scroll functions
+
+  const aboutSection = useRef()
+  const projectSection = useRef()
+  const contactSection = useRef()
+
   const scrollToTop = () =>{
     window.scrollTo({
       behavior: 'smooth',
@@ -43,17 +48,15 @@ export default function Home() {
   };
   
   const scrollToAbout = () =>{
-    window.scrollTo({
-      behavior: 'smooth',
-      top: 929
-    });
+    aboutSection.current.scrollIntoView({behavior: 'smooth'});
   };
   
   const scrollToProjects = () =>{
-    window.scrollTo({
-      behavior: 'smooth',
-      top: 1922
-    });
+    projectSection.current.scrollIntoView({behavior: 'smooth'})
+  };
+
+  const scrollToContact = () =>{
+    contactSection.current.scrollIntoView({behavior: 'smooth'})
   };
 
   // Dark / Light Mode variables
@@ -100,6 +103,8 @@ export default function Home() {
         transition='.3s ease-in-out'
       >
 
+
+
         {/* Header */}
         <Stack 
           alignItems='center' 
@@ -126,23 +131,28 @@ export default function Home() {
 
             {/* Mobile Menu */}
             <Hide breakpoint="(min-width: 599px)">
+
               <IconButton 
-                _hover={{bg: "whitesmoke", color: "#121212"}}
-                bg='whitesmoke'
+                _hover={{bg: {bg}, color: {bgHover}}}
+                bg={bgHover}
                 borderRadius='0'
-                color='#121212'
-                // color='whitesmoke'
+                bottom='5'
+                color={colorHover}
                 icon={icon}
-                marginRight='auto !important'
-                size='sm'
+                marginLeft='auto !important'
+                position='fixed'
+                right='5%'
+                size='md'
                 onClick={toggleColorMode}
               />
+
               <HamburgerIcon 
                 cursor='pointer'
                 h={6}
                 w={6}
                 onClick={() => setIsMobileMenuShown(!isMobileMenuShown)}
               />
+
 
               <Stack 
                 alignItems='center'
@@ -156,11 +166,10 @@ export default function Home() {
                 justifyContent='center'
                 left='50%'
                 margin='0 !important'
-                minWidth='50%'
+                minWidth='75%'
                 padding={14}
-                // paddingBottom={7}
                 position='absolute'
-                spacing={10}
+                spacing={8}
                 top='100px'
                 transform={mobileMenu}
                 transition='.2s ease-in-out'
@@ -168,8 +177,7 @@ export default function Home() {
                 <Link 
                   _hover={{bg: "whitesmoke", color: "#121212"}}
                   as='a'
-                  border= '1px solid whitesmoke'
-                  color='whitesmoke'
+                  border= '1px solid whitesmoke' 
                   cursor='pointer'
                   padding={1}
                   textAlign='center'
@@ -202,7 +210,22 @@ export default function Home() {
                   Projects
                 </Link>
 
+                <Link 
+                  _hover={{bg: "whitesmoke", color: "#121212"}}
+                  border='1px solid whitesmoke' 
+                  padding={1} 
+                  textAlign='center'
+                  width='100%'
+                  onClick={scrollToContact}
+                >
+                  Contact
+                </Link>
+
+
+
               </Stack>
+
+
             </Hide>
 
             {/* Wide res Menu */}
@@ -236,6 +259,14 @@ export default function Home() {
                   Projects
                 </Link>
 
+                <Link 
+                  _hover={{bg: "whitesmoke", color: "#121212"}}
+                  padding={1} 
+                  onClick={scrollToContact} 
+                >
+                  Contact
+                </Link>
+
                 <IconButton 
                   _hover={{bg: "whitesmoke", color: "#121212"}}
                   bg='transparent'
@@ -263,9 +294,9 @@ export default function Home() {
         >
 
           <Stack 
-            _hover={{background: `${bgHover}`, boxShadow: `${shadowHover}`, color: `${colorHover}`}}
+            _hover={{background: `${bgHover}`, boxShadow: `${shadowHover}`, color: `${colorHover}`}} 
             border={border} 
-            boxShadow={shadow} 
+            boxShadow={shadow}
             color={color}
             cursor='pointer'
             fontSize='2xl'
@@ -273,7 +304,6 @@ export default function Home() {
             position='relative'
             transition='.3s ease-in-out'
             zIndex='0'
-            onClick={scrollToAbout}
           >
             <Heading fontFamily="'IBM Plex Mono', monospace" fontSize={['4xl', '4xl', '4xl', '5xl']} fontWeight={400}>
               EMI ACERBI
@@ -287,8 +317,23 @@ export default function Home() {
 
 
 
-        <Stack alignItems='center' bg={bg} color={color} height='75vh' justifyContent='center' paddingX={5} spacing={20} transition='.3s ease-in-out'>
-        <Stack alignItems='center' direction={['column', 'column', 'column', 'row']} spacing={40} >
+        <Stack 
+          ref={aboutSection} 
+          alignItems='center' 
+          bg={bg} 
+          // bg='red'
+          color={color} 
+          height='100vh' 
+          href={aboutSection} 
+          justifyContent='center'
+          paddingX={5}
+          spacing={20}
+          transition='.3s ease-in-out'
+        >
+        <Stack alignItems='center' direction={['column', 'column', 'column', 'row']}  
+          spacing={40} 
+        
+        >
           <Stack spacing={10}>
             <Heading 
               border={borderSlim} 
@@ -388,6 +433,7 @@ export default function Home() {
 
         {/* Proyectos */}
         <Stack 
+          ref={projectSection} 
           alignItems='center' 
           bg={bg} 
           color={color} 
@@ -395,8 +441,8 @@ export default function Home() {
           minHeight='100vh' 
           paddingBottom='8rem' 
           paddingTop='5rem' 
-          paddingX={5} 
           // paddingY={10}
+          paddingX={5}
           spacing={24}
           transition='.3s ease-in-out'
         >
@@ -519,7 +565,17 @@ export default function Home() {
 
 
         {/* Footer */}
-        <Stack alignItems='center' bg='#121212' boxShadow='lg' color='whitesmoke' direction='row' justifyContent='center' padding={8} spacing={8}>
+        <Stack 
+          ref={contactSection} 
+          alignItems='center' 
+          bg='#121212' 
+          boxShadow='lg' 
+          color='whitesmoke' 
+          direction='row' 
+          justifyContent='center' 
+          padding={8}
+          spacing={8}
+        >
           <Icon 
             _hover={{opacity: '.5'}}
             as={FaGithub}
