@@ -103,8 +103,6 @@ export default function Home() {
         transition='.3s ease-in-out'
       >
 
-
-
         {/* Header */}
         <Stack 
           alignItems='center' 
@@ -304,6 +302,7 @@ export default function Home() {
             position='relative'
             transition='.3s ease-in-out'
             zIndex='0'
+            onClick={scrollToAbout}
           >
             <Heading fontFamily="'IBM Plex Mono', monospace" fontSize={['4xl', '4xl', '4xl', '5xl']} fontWeight={400}>
               EMI ACERBI
