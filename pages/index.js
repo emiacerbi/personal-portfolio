@@ -25,6 +25,7 @@ import { SiChakraui } from "react-icons/si";
 
 import { HamburgerIcon, MoonIcon } from '@chakra-ui/icons'
 import { useRef, useState } from "react";
+import { Header } from "../components/header";
 
 export default function Home() {
 
@@ -103,6 +104,10 @@ export default function Home() {
         transition='.3s ease-in-out'
       >
 
+        {/* <Header 
+        
+        /> */}
+
         {/* Header */}
         <Stack 
           alignItems='center' 
@@ -172,52 +177,55 @@ export default function Home() {
                 transform={mobileMenu}
                 transition='.2s ease-in-out'
               >
-                <Link 
-                  _hover={{bg: "whitesmoke", color: "#121212"}}
-                  as='a'
-                  border= '1px solid whitesmoke' 
-                  cursor='pointer'
-                  padding={1}
-                  textAlign='center'
-                  transition='.3s ease-in-out'
-                  width='100%'
-                  onClick={scrollToTop}
-                >
-                  Home
-                </Link>
+                <nav>
 
-                <Link 
-                  _hover={{bg: "whitesmoke", color: "#121212"}} 
-                  border= '1px solid whitesmoke' 
-                  padding={1}
-                  textAlign='center'
-                  width='100%'
-                  onClick={scrollToAbout}
-                >
-                  About
-                </Link>
+                  <Link 
+                    _hover={{bg: "whitesmoke", color: "#121212"}}
+                    as='a'
+                    border= '1px solid whitesmoke' 
+                    cursor='pointer'
+                    padding={1}
+                    textAlign='center'
+                    transition='.3s ease-in-out'
+                    width='100%'
+                    onClick={scrollToTop}
+                  >
+                    Home
+                  </Link>
 
-                <Link 
-                  _hover={{bg: "whitesmoke", color: "#121212"}}
-                  border='1px solid whitesmoke' 
-                  padding={1} 
-                  textAlign='center'
-                  width='100%'
-                  onClick={scrollToProjects}
-                >
-                  Projects
-                </Link>
+                  <Link 
+                    _hover={{bg: "whitesmoke", color: "#121212"}} 
+                    border= '1px solid whitesmoke' 
+                    padding={1}
+                    textAlign='center'
+                    width='100%'
+                    onClick={scrollToAbout}
+                  >
+                    About
+                  </Link>
 
-                <Link 
-                  _hover={{bg: "whitesmoke", color: "#121212"}}
-                  border='1px solid whitesmoke' 
-                  padding={1} 
-                  textAlign='center'
-                  width='100%'
-                  onClick={scrollToContact}
-                >
-                  Contact
-                </Link>
+                  <Link 
+                    _hover={{bg: "whitesmoke", color: "#121212"}}
+                    border='1px solid whitesmoke' 
+                    padding={1} 
+                    textAlign='center'
+                    width='100%'
+                    onClick={scrollToProjects}
+                  >
+                    Projects
+                  </Link>
+
+                  <Link 
+                    _hover={{bg: "whitesmoke", color: "#121212"}}
+                    border='1px solid whitesmoke' 
+                    padding={1} 
+                    textAlign='center'
+                    width='100%'
+                    onClick={scrollToContact}
+                  >
+                    Contact
+                  </Link>
+                </nav>
 
 
 
@@ -445,7 +453,7 @@ export default function Home() {
           spacing={24}
           transition='.3s ease-in-out'
         >
-          <Stack alignItems='center' direction={['column', 'column', 'column', 'row']} spacing={[10, 10, 10, 20]}>
+          <Stack>
             <Heading 
               bg={bg} 
               border={borderSlim} 
@@ -457,20 +465,47 @@ export default function Home() {
               transition='.3s ease-in-out'>
                 PROJECTS
             </Heading>
-            <Button 
-              _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
-              bg={bg} 
-              border={borderVerySlim} 
-              borderRadius='0' 
-              fontWeight={400} 
-              transition='.3s background ease-in-out'
-              onClick={()=> window.open("https://github.com/emiacerbi", "_blank")}
-            >
-              See more
-            </Button>
+
           </Stack>
 
-          <Stack direction={['column', 'column', 'column', 'row']} spacing={[10, 10, 10, 20]}>
+          
+
+          <Stack direction={['column', 'column', 'column', 'column', 'row']} spacing={[10, 10, 10, 10, 20]}>
+
+          <Stack spacing={5}>
+            <Box 
+                _hover={{ 
+                  bg: `${bgHover}`,
+                  boxShadow: `${shortShadow}` ,
+                  color: `${colorHover}`
+                }} 
+                  bg={bg} 
+                  border={borderSlim} 
+                  cursor='pointer' display='flex'
+                  height='150px'
+                  position='relative'
+                  transition='.3s ease-in-out'
+                  width='250px'
+                  onClick={()=> window.open("https://emiacerbi-aerolab-challenge.vercel.app/")}
+                >
+                
+                <Text alignSelf='center' fontSize='2xl' margin='0 auto' textAlign='center' width='10ch'>Aerolab Challenge</Text>
+
+              </Box>
+              <Button 
+                _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
+                bg={bg} 
+                border={borderVerySlim} 
+                borderRadius='0' 
+                fontWeight={400} 
+                transition='.3s background ease-in-out'
+                onClick={()=> window.open("https://github.com/emiacerbi/aerolab-challenge")}
+              >
+                Repositorio
+              </Button>
+            </Stack>
+
+
             <Stack spacing={5}>
               <Box 
               _hover={{ 
@@ -485,10 +520,10 @@ export default function Home() {
                 position='relative'
                 transition='.3s ease-in-out'
                 width='250px'
-                onClick={()=> window.open("https://emiacerbi.github.io/blogr-landing-page/", "_blank")}
+                onClick={()=> window.open("https://emiacerbi-countries.vercel.app/", "_blank")}
               >
 
-                <Text alignSelf='center' fontSize='2xl' textAlign='center'>Blogr landing page</Text>
+                <Text alignSelf='center' fontSize='2xl' margin='0 auto' textAlign='center'>Countries API</Text>
               </Box>
 
               <Button 
@@ -498,7 +533,7 @@ export default function Home() {
                 borderRadius='0' 
                 fontWeight={400} 
                 transition='.3s background ease-in-out' 
-                onClick={()=> window.open("https://github.com/emiacerbi/blogr-landing-page")}>
+                onClick={()=> window.open("https://github.com/emiacerbi/countries-api")}>
                   Repositorio
               </Button>
             </Stack>
@@ -526,7 +561,7 @@ export default function Home() {
               <Button _hover={{bg:`${bgHover}`, color: `${colorHover}`}} bg={bg} border={borderVerySlim} borderRadius='0' fontWeight={400} transition='.3s background ease-in-out' onClick={()=> window.open("https://github.com/emiacerbi/crowdfunding-product-page")}>Repositorio</Button>
             </Stack>
 
-            <Stack spacing={5}>
+          <Stack spacing={5}>
             <Box 
                 _hover={{ 
                   bg: `${bgHover}`,
@@ -545,21 +580,33 @@ export default function Home() {
                 
                 <Text alignSelf='center' fontSize='2xl' margin='0 auto' textAlign='center' width='10ch'>Social Media Dashboard</Text>
 
-              </Box>
-              <Button 
-                _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
-                bg={bg} 
-                border={borderVerySlim} 
-                borderRadius='0' 
-                fontWeight={400} 
-                transition='.3s background ease-in-out'
-                onClick={()=> window.open("https://github.com/emiacerbi/social-media-dashboard")}
-              >
-                Repositorio
-              </Button>
-            </Stack>
+            </Box>
+            <Button 
+              _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
+              bg={bg} 
+              border={borderVerySlim} 
+              borderRadius='0' 
+              fontWeight={400} 
+              transition='.3s background ease-in-out'
+              onClick={()=> window.open("https://github.com/emiacerbi/social-media-dashboard")}
+            >
+              Repositorio
+            </Button>
+          </Stack>
+
 
           </Stack>
+          <Button 
+              _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
+              bg={bg} 
+              border={borderVerySlim} 
+              borderRadius='0' 
+              fontWeight={400} 
+              transition='.3s background ease-in-out'
+              onClick={()=> window.open("https://github.com/emiacerbi", "_blank")}
+            >
+              See more
+          </Button>
         </Stack>
 
 
