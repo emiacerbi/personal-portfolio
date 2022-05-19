@@ -6,31 +6,25 @@ import {
   Hide, 
   Icon, 
   IconButton, 
-  Image, 
   Link,
   Show,
   Stack,
   Text,
-  Tooltip,
   useColorMode,
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
 
+
 import Head from "next/head";
 
 import { FaCss3Alt, FaEnvelope, FaGitAlt, FaGithub, FaHtml5, FaJs, FaLinkedin, FaReact, FaSass} from "react-icons/fa";
-import { BsSunFill } from "react-icons/bs";
 import { SiChakraui } from "react-icons/si";
 
-import { HamburgerIcon, MoonIcon } from '@chakra-ui/icons'
 import { useRef, useState } from "react";
-// import { Header } from "../components/header";
+import { Header } from "../components/header";
 
 export default function Home() {
-
-  const [isMobileMenuShown, setIsMobileMenuShown] = useState(false)
-  const mobileMenu = isMobileMenuShown ? 'translateX(-50%) scale(1)' : 'translateX(-50%) scale(0)'
 
   // For Gmail
   const toast = useToast()
@@ -41,37 +35,19 @@ export default function Home() {
   const projectSection = useRef()
   const contactSection = useRef()
 
-  const scrollToTop = () =>{
-    window.scrollTo({
-      behavior: 'smooth',
-      top: 0
-    });
-  };
-  
   const scrollToAbout = () =>{
     aboutSection.current.scrollIntoView({behavior: 'smooth'});
-  };
-  
-  const scrollToProjects = () =>{
-    projectSection.current.scrollIntoView({behavior: 'smooth'})
-  };
-
-  const scrollToContact = () =>{
-    contactSection.current.scrollIntoView({behavior: 'smooth'})
   };
 
   // Dark / Light Mode variables
 
   const { toggleColorMode } = useColorMode()
 
-  const bg = useColorModeValue('whitesmoke', '#202124')
-  const color = useColorModeValue('#202124', 'whitesmoke')
-  const bgHover = useColorModeValue('#202124', 'whitesmoke')
-  const colorHover = useColorModeValue('whitesmoke', '#202124')
+  const lightDark = useColorModeValue('whitesmoke', '#202124')
+  const Darklight = useColorModeValue('#202124', 'whitesmoke')
   const border = useColorModeValue('4px solid #202124' , '4px solid whitesmoke')
   const borderSlim = useColorModeValue('3px solid #202124' , '3px solid whitesmoke')
   const borderVerySlim = useColorModeValue('2px solid #202124' , '2px solid whitesmoke')
-  const icon = useColorModeValue(<MoonIcon />, <BsSunFill />)
 
   const shadow = useColorModeValue(
     'rgb(245, 245, 245) 10px -10px 0px -4px, rgb(0, 0, 0) 10px -10px',
@@ -85,10 +61,6 @@ export default function Home() {
     'rgb(245, 245, 245) 10px -10px 0px -3px, rgb(0, 0, 0) 10px -10px',
     'rgb(32, 33, 36) 10px -10px 0px -3px, rgb(245, 245, 245) 10px -10px'
   ) 
-  const veryShortShadow = useColorModeValue(
-    'rgb(245, 245, 245) 10px -10px 0px -2px, rgb(0, 0, 0) 10px -10px, rgb(245, 245, 245) 20px -20px 0px -2px',
-    'rgb(32, 33, 36) 10px -10px 0px -2px, rgb(245, 245, 245) 10px -10px, rgb(32, 33, 36) 20px -20px 0px -2px'
-  ) 
 
   return (
     <>
@@ -96,7 +68,7 @@ export default function Home() {
         <title>Personal Portfolio</title>
       </Head>
       <Container 
-        bg={bg} 
+        bg={lightDark} 
         fontFamily="'IBM Plex Mono', monospace" 
         maxWidth='100%' 
         minHeight='100vh'
@@ -104,189 +76,37 @@ export default function Home() {
         transition='.3s ease-in-out'
       >
 
-        {/* <Header 
+        <Box 
+          sx={{
+            '&::-webkit-scrollbar': {
+              width: '10px'
+            },
+            
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#CBCBCB',
+              border: ".1px solid #B7B7B7",
+              outline: '2px solid #FFF',
+              outlineOffset: '-2px',
+            },
+            '&::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#909090',
+            },
+            '&::-webkit-scrollbar-track-piece': {
+              backgroundColor: '#FFF',
+            },
+          }}
+        />
+
+        
+
+        <Header 
+          aboutSection={aboutSection}
+          contactSection={contactSection}
+          Darklight={Darklight}
+          lightDark={lightDark}
+          projectSection={projectSection}
           toggleColorMode={toggleColorMode}
-        /> */}
-
-        {/* Header */}
-        <Stack 
-          alignItems='center' 
-          as='header' 
-          bg='#121212' 
-          color='whitesmoke' 
-          direction='row' 
-          fontWeight={500} 
-          justifyContent='space-between' 
-          padding={5} paddingX={9}
-          position='fixed'
-          shadow='lg'
-          width='100%'
-          zIndex='3'
-          
-          >
-            <Text
-              _hover={{background: "whitesmoke", color: "#121212"}}
-              padding={1.5}
-              transition='.2s ease-in-out'
-            >
-              Emi Acerbi
-            </Text>
-
-            {/* Mobile Menu */}
-            <Hide breakpoint="(min-width: 599px)">
-
-              <IconButton 
-                _hover={{bg: {bg}, color: {bgHover}}}
-                bg={bgHover}
-                borderRadius='0'
-                bottom='5'
-                color={colorHover}
-                icon={icon}
-                marginLeft='auto !important'
-                position='fixed'
-                right='5%'
-                size='md'
-                onClick={toggleColorMode}
-              />
-
-              <HamburgerIcon 
-                cursor='pointer'
-                h={6}
-                w={6}
-                onClick={() => setIsMobileMenuShown(!isMobileMenuShown)}
-              />
-
-
-              <Stack 
-                alignItems='center'
-                as='nav'
-                bg='#121212'
-                borderRadius='.5rem' 
-                boxShadow='xl' 
-                direction='column' 
-                display='flex' 
-                flexDirection='column'
-                justifyContent='center'
-                left='50%'
-                margin='0 !important'
-                minWidth='75%'
-                padding={14}
-                position='absolute'
-                spacing={8}
-                top='100px'
-                transform={mobileMenu}
-                transition='.2s ease-in-out'
-              >
-                <nav>
-
-                  <Link 
-                    _hover={{bg: "whitesmoke", color: "#121212"}}
-                    as='a'
-                    border= '1px solid whitesmoke' 
-                    cursor='pointer'
-                    padding={1}
-                    textAlign='center'
-                    transition='.3s ease-in-out'
-                    width='100%'
-                    onClick={scrollToTop}
-                  >
-                    Home
-                  </Link>
-
-                  <Link 
-                    _hover={{bg: "whitesmoke", color: "#121212"}} 
-                    border= '1px solid whitesmoke' 
-                    padding={1}
-                    textAlign='center'
-                    width='100%'
-                    onClick={scrollToAbout}
-                  >
-                    About
-                  </Link>
-
-                  <Link 
-                    _hover={{bg: "whitesmoke", color: "#121212"}}
-                    border='1px solid whitesmoke' 
-                    padding={1} 
-                    textAlign='center'
-                    width='100%'
-                    onClick={scrollToProjects}
-                  >
-                    Projects
-                  </Link>
-
-                  <Link 
-                    _hover={{bg: "whitesmoke", color: "#121212"}}
-                    border='1px solid whitesmoke' 
-                    padding={1} 
-                    textAlign='center'
-                    width='100%'
-                    onClick={scrollToContact}
-                  >
-                    Contact
-                  </Link>
-                </nav>
-
-
-
-              </Stack>
-
-
-            </Hide>
-
-            {/* Wide res Menu */}
-            <Show breakpoint="(min-width: 600px">
-              <Stack alignItems='center' as='nav' direction='row' justifyContent='center'  spacing={10}>
-                <Link 
-                  _hover={{bg: "whitesmoke", color: "#121212"}}
-                  as='a'
-                  bg='transparent' 
-                  cursor='pointer'
-                  padding={1}
-                  transition='.3s ease-in-out'
-                  onClick={scrollToTop}
-                >
-                  Home
-                </Link>
-
-                <Link 
-                  _hover={{bg: "whitesmoke", color: "#121212"}} 
-                  padding={1} 
-                  onClick={scrollToAbout}
-                >
-                  About
-                </Link>
-
-                <Link 
-                  _hover={{bg: "whitesmoke", color: "#121212"}}
-                  padding={1} 
-                  onClick={scrollToProjects} 
-                >
-                  Projects
-                </Link>
-
-                <Link 
-                  _hover={{bg: "whitesmoke", color: "#121212"}}
-                  padding={1} 
-                  onClick={scrollToContact} 
-                >
-                  Contact
-                </Link>
-
-                <IconButton 
-                  _hover={{bg: "whitesmoke", color: "#121212"}}
-                  bg='transparent'
-                  borderRadius='0'
-                  // color='#121212'
-                  color='whitesmoke'
-                  icon={icon}
-                  size='md'
-                  onClick={toggleColorMode}
-                />
-              </Stack>
-
-            </Show>
-          </Stack>
+        />
 
 
         {/* Hero */}
@@ -300,10 +120,10 @@ export default function Home() {
         >
 
           <Stack 
-            _hover={{background: `${bgHover}`, boxShadow: `${shadowHover}`, color: `${colorHover}`}} 
+            _hover={{background: `${Darklight}`, boxShadow: `${shadowHover}`, color: `${lightDark}`}} 
             border={border} 
             boxShadow={shadow}
-            color={color}
+            color={Darklight}
             cursor='pointer'
             fontSize='2xl'
             padding={10}
@@ -327,9 +147,8 @@ export default function Home() {
         <Stack 
           ref={aboutSection} 
           alignItems='center' 
-          bg={bg} 
-          // bg='red'
-          color={color} 
+          bg={lightDark} 
+          color={Darklight} 
           height='100vh' 
           href={aboutSection} 
           justifyContent='center'
@@ -337,29 +156,32 @@ export default function Home() {
           spacing={20}
           transition='.3s ease-in-out'
         >
-        <Stack alignItems='center' direction={['column', 'column', 'column', 'row']}  
-          spacing={40} 
+        <Stack alignItems='center' direction={['column', 'column', 'column', 'column']}  
+          spacing={20} 
         
         >
-          <Stack spacing={10}>
+          <Stack gap={3}>
             <Heading 
               border={borderSlim} 
               boxShadow={shortShadow} 
               fontFamily="'IBM Plex Mono', monospace" 
               fontWeight={400} 
-              margin={['0 auto', '0 auto', '0 auto', '0' ]} 
+              margin={['0 auto 2rem !important' ]} 
               maxWidth='fit-content'
-              padding={5} 
+              padding={5}
               transition='.2s ease-in-out'
               >ABOUT ME </Heading>
-            <Text fontSize='md' maxWidth='50ch' textAlign={['center', 'center', 'center', 'left']}>
-              {`I'm from Buenos Aires, Argentina. Some time ago, I discovered my love for programming and developing web applications. Since then, I try everyday to get a little bit better as a developer than the day before. `}
+            <Text fontSize='lg' maxWidth='55ch' textAlign={['center']}>
+              {`I'm from Buenos Aires, Argentina. Since I discovered my love for programming and developing web applications, I dedicate myself to get a little bit better everyday. `} 
+            </Text> 
+            <Text fontSize='lg' maxWidth='55ch' textAlign={['center']}>
+              {`I build clean, user-friendly websites and applications that look good, so if you need help in your project, don't hesitate to reach out.  `}
             </Text> 
           </Stack>
 
           <Stack spacing={10}>
 
-            <Text border={borderVerySlim} boxShadow={veryShortShadow} fontWeight={500} margin='0 auto' maxWidth='fit-content' padding={2} textAlign='center' transition='.3s ease-in-out'>Technologies I use</Text>
+            <Text border={borderVerySlim}  fontSize='lg' fontWeight={400} margin='0 auto' maxWidth='fit-content' padding={2} textAlign='center' transition='.3s ease-in-out'>Technologies I use</Text>
             FaHtml5, FaCss3Alt, FaReact, FaJs, FaGitAlt 
 
             <Stack alignItems='center'  direction='column' minWidth='300px' spacing={8}>
@@ -442,8 +264,8 @@ export default function Home() {
         <Stack 
           ref={projectSection} 
           alignItems='center' 
-          bg={bg} 
-          color={color} 
+          bg={lightDark} 
+          color={Darklight} 
           justifyContent='center' 
           minHeight='100vh' 
           paddingBottom='8rem' 
@@ -455,10 +277,10 @@ export default function Home() {
         >
           <Stack>
             <Heading 
-              bg={bg} 
+              bg={lightDark} 
               border={borderSlim} 
               boxShadow={shortShadow} 
-              color={color} 
+              color={Darklight} 
               fontFamily="'IBM Plex Mono', monospace" 
               fontWeight={400} 
               padding={5} 
@@ -472,14 +294,14 @@ export default function Home() {
 
           <Stack direction={['column', 'column', 'column', 'column', 'row']} spacing={[10, 10, 10, 10, 20]}>
 
-          <Stack spacing={5}>
-            <Box 
+            <Stack spacing={5}>
+              <Box 
                 _hover={{ 
-                  bg: `${bgHover}`,
+                  bg: `${Darklight}`,
                   boxShadow: `${shortShadow}` ,
-                  color: `${colorHover}`
+                  color: `${lightDark}`
                 }} 
-                  bg={bg} 
+                  bg={lightDark} 
                   border={borderSlim} 
                   cursor='pointer' display='flex'
                   height='150px'
@@ -493,8 +315,8 @@ export default function Home() {
 
               </Box>
               <Button 
-                _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
-                bg={bg} 
+                _hover={{bg:`${Darklight}`, color: `${lightDark}`}} 
+                bg={lightDark} 
                 border={borderVerySlim} 
                 borderRadius='0' 
                 fontWeight={400} 
@@ -509,11 +331,11 @@ export default function Home() {
             <Stack spacing={5}>
               <Box 
               _hover={{ 
-                bg: `${bgHover}`,
+                bg: `${Darklight}`,
                 boxShadow: `${shortShadow}` ,
-                color: `${colorHover}`
+                color: `${lightDark}`
               }} 
-                bg={bg} 
+                bg={lightDark} 
                 border={borderSlim} 
                 cursor='pointer' display='flex'
                 height='150px'
@@ -527,8 +349,8 @@ export default function Home() {
               </Box>
 
               <Button 
-                _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
-                bg={bg} 
+                _hover={{bg:`${Darklight}`, color: `${lightDark}`}} 
+                bg={lightDark} 
                 border={borderVerySlim} 
                 borderRadius='0' 
                 fontWeight={400} 
@@ -541,11 +363,11 @@ export default function Home() {
             <Stack spacing={5}>
             <Box 
                 _hover={{ 
-                  bg: `${bgHover}`,
+                  bg: `${Darklight}`,
                   boxShadow: `${shortShadow}` ,
-                  color: `${colorHover}`
+                  color: `${lightDark}`
                 }} 
-                  bg={bg} 
+                  bg={lightDark} 
                   border={borderSlim} 
                   cursor='pointer' display='flex'
                   height='150px'
@@ -558,17 +380,17 @@ export default function Home() {
                   <Text alignSelf='center' fontSize='2xl' textAlign='center'>Crowdfunding product page</Text>
                   
               </Box>
-              <Button _hover={{bg:`${bgHover}`, color: `${colorHover}`}} bg={bg} border={borderVerySlim} borderRadius='0' fontWeight={400} transition='.3s background ease-in-out' onClick={()=> window.open("https://github.com/emiacerbi/crowdfunding-product-page")}>Repositorio</Button>
+              <Button _hover={{bg:`${Darklight}`, color: `${lightDark}`}} bg={lightDark} border={borderVerySlim} borderRadius='0' fontWeight={400} transition='.3s background ease-in-out' onClick={()=> window.open("https://github.com/emiacerbi/crowdfunding-product-page")}>Repositorio</Button>
             </Stack>
 
           <Stack spacing={5}>
             <Box 
                 _hover={{ 
-                  bg: `${bgHover}`,
+                  bg: `${Darklight}`,
                   boxShadow: `${shortShadow}` ,
-                  color: `${colorHover}`
+                  color: `${lightDark}`
                 }} 
-                  bg={bg} 
+                  bg={lightDark} 
                   border={borderSlim} 
                   cursor='pointer' display='flex'
                   height='150px'
@@ -582,8 +404,8 @@ export default function Home() {
 
             </Box>
             <Button 
-              _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
-              bg={bg} 
+              _hover={{bg:`${Darklight}`, color: `${lightDark}`}} 
+              bg={lightDark} 
               border={borderVerySlim} 
               borderRadius='0' 
               fontWeight={400} 
@@ -597,8 +419,8 @@ export default function Home() {
 
           </Stack>
           <Button 
-              _hover={{bg:`${bgHover}`, color: `${colorHover}`}} 
-              bg={bg} 
+              _hover={{bg:`${Darklight}`, color: `${lightDark}`}} 
+              bg={lightDark} 
               border={borderVerySlim} 
               borderRadius='0' 
               fontWeight={400} 
@@ -657,13 +479,10 @@ export default function Home() {
                   position: 'bottom-right',
                   status: 'info',
                   variant: 'subtle',
-                  // title: 'Account created.',
                 })
               }   
             /> 
-        
           </Stack>
-
         </Stack>
 
       </Container>
