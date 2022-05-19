@@ -44,7 +44,6 @@ export const Header = ({contactSection, projectSection, aboutSection, toggleColo
       width='100%'
       zIndex='3'
     >
-      <nav>
 
       <Text
         _hover={{background: "whitesmoke", color: "#121212"}}
@@ -148,12 +147,11 @@ export const Header = ({contactSection, projectSection, aboutSection, toggleColo
 
         </Stack>
       </Hide>
-      </nav>
 
 
       {/* Wide res Menu */}
       <Show breakpoint="(min-width: 600px">
-        <Stack alignItems='center' as='nav' direction='row' justifyContent='center'  spacing={10}>
+        <Stack alignItems='center' direction='row' justifyContent='center' spacing={10}>
           <Link 
             _hover={{bg: "whitesmoke", color: "#121212"}}
             as='button'
